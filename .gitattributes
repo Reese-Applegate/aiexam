@@ -24,3 +24,5 @@ track filter=lfs diff=lfs merge=lfs -text
 011_yolo_fire/weights/last.pt filter=lfs diff=lfs merge=lfs -text
 011_yolo_fire/yolov5s.pt filter=lfs diff=lfs merge=lfs -text
 *.data-00000-of-00001 filter=lfs diff=lfs merge=lfs -text
+008_ai_access/models/shape_predictor_68_face_landmarks.dat filter=lfs diff=lfs merge=lfs -text
+013_OpenCV/messy.mp4 filter=lfs diff=lfs merge=lfs -text

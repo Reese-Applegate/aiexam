@@ -49,3 +49,34 @@ Imshow('윈도우창 이름', '이미지')
 	< 0 : 상하좌우 대칭
 	= 0 : 반전
 	< 0 : 좌우 반전
+
+6. OpenCV 카메라(영상) 제어
+opencv_camera.py
+256*256*256 컬러 True Color
+(3) 영상
+
+7. django 실시간 스트리밍 제어
+google - "tailblock.cc"
+https://tailblocks.cc/
+
+camera.html
+
+
+<설치 순서>
+conda remove dlib
+pip install cmake
+conda install -c conda-forge dlib
+pip install face_recognition
+pip install --upgrade numpy
+
+8. 가상환경 생성
+conda create -n p38_aiaccess python=3.8
+pip install django
+pip install pymysql
+pip install opencv-python
+conda install -c conda-forge dlib
+
+8. mp_face.py
+mediapipe : 얼굴, 손, 모션 등 다양한 분야에서 사용할 수 있는 구글이 공개한 인공지능 라이브러리(Pre-trained)
+
+pip install mediapipe

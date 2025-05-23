@@ -1,5 +1,5 @@
 @echo off
-cd /d D:\ai_exam
+cd /d c:\ai_exam
 
 git pull
 
