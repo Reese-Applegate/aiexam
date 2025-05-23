@@ -1,0 +1,21 @@
+class = "태그를 넣을 수 있다."
+
+TAG
+py - 위 아래 간격을 이야기함
+py-1 에서 1의 의미는 4px을 의미.
+pt-2 : 위에 2*4px 여백
+
+<a>
+</a> 
+이거는 선택가능한 속성 음 
+<a href="http://www.naver.com">네이버로 이동</a>
+
+CRUD
+Create
+Read
+Update
+Delete
+
+<JavaScript>
+location.href = '/member/delete/';
+특정한 위치로 이동하는 경우

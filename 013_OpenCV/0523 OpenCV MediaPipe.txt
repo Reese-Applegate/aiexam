@@ -1,0 +1,7 @@
+<OpenCV, MediaPipe -> CVZONE>
+
+1. OpenCV
+	영상 카메라 제어가 중요한이유.
+c:\ai_exam\013_openCV
+=> 첲리결과 -> ai_access 사용
+=> faiss엔진 -> ai_access 사용

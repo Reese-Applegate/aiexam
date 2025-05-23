@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>즉시가입 : 인공지능 출입관리 프로젝트</title>
+  <style>
+    /* 흐르는 강물 같은 배경 애니메이션 */
+    @keyframes flowRainbow {
+      0%   { background-position:   0% 50%; filter: brightness(1.2) contrast(1.2); }
+      25%  { background-position:  50% 50%; filter: brightness(1.5) contrast(1.3); }
+      50%  { background-position: 100% 50%; filter: brightness(1.2) contrast(1.2); }
+      75%  { background-position:  50% 50%; filter: brightness(1.5) contrast(1.3); }
+      100% { background-position:   0% 50%; filter: brightness(1.2) contrast(1.2); }
+    }
+
+    /* 네온 글자 번쩍임 + 흐림 효과 조금 추가 */
+    @keyframes neonFlicker {
+      0%, 100% { text-shadow: 
+          0 0 10px #fff, 
+          0 0 20px #ff00ff, 
+          0 0 30px #ff00ff, 
+          0 0 40px #ff00ff; 
+          filter: blur(0px); }
+      50% { text-shadow: 
+          0 0 5px #fff, 
+          0 0 15px #00ffff, 
+          0 0 25px #00ffff; 
+          filter: blur(1px); }
+    }
+
+    .flow-bg {
+      background: linear-gradient(
+        45deg,
+        #ff0000, #ff7f00, #ffff00, #00ff00,
+        #0000ff, #4b0082, #9400d3, #ff0000
+      );
+      background-size: 800% 800%;
+      animation: flowRainbow 5s infinite linear;
+    }
+    .neon {
+      animation: neonFlicker 0.8s infinite;
+    }
+  </style>
+</head>
+<body class="min-h-screen flow-bg flex items-center justify-center">
+  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <div class="font-mono text-white text-2xl font-extrabold neon text-center px-4 py-2 drop-shadow-xl">
+          (❁´◡`❁)인공지능에게 출입관리를 맡기세요!o(*°▽°*)o
+      </div>
+      <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+              <h1 class="text-white text-xl font-extrabold neon text-center px-4 py-2 drop-shadow-xl" >
+                  (☞ﾟヮﾟ)☞개인정보를 보호하기☜(ﾟヮﾟ☜)
+              </h1>
+              <form action="/member/add/save/" class="space-y-4 md:space-y-6" method="POST">
+                {% csrf_token %}
+                  <div>
+                      <label for="ids" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">아이디</label>
+                      <input type="text" name="ids" id="ids" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="nickname" required="">
+                  </div>
+                  <div>
+                      <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">비밀번호</label>
+                      <input type="password" name="re_password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                  </div>
+                  <div>
+                      <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">성명</label>
+                      <input type="text" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="김이현" required="">
+                  </div>                  
+                  <div>
+                      <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">이메일</label>
+                      <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ai@access.com" required="">
+                  </div>                  
+                  <div>
+                      <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">연락처</label>
+                      <input type="text" name="phone" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="010-0000-0000" required="">
+                  </div>                 
+                  <button type="button" onclick="showAlert2()" class="relative inline-flex items-center justify-center w-full h-full p-0 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-200 via-red-300 to-yellow-200 group-hover:from-red-200 group-hover:via-red-300 group-hover:to-yellow-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:ring-inset focus:ring-offset-0 focus:ring-red-100 dark:focus:ring-red-400">
+                    <span class="block w-full h-full px-8 py-4 flex items-center justify-center transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
+                        즉 시 가 입
+                    </span>
+                  </button>
+              </form>
+          </div>
+      </div>
+  </div>
+<!-- onclick="Javascript:showAlert();" -->
+
+<!-- 자바스크립트 -->
+<!-- 이 범위를 안벗어난다. 이것만 쓴다. -->
+<style>
+  .nyan-cat {
+    position: absolute;
+    width: 256px;
+    height: 256px;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .nyan-cat-popup {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  @keyframes scaleBounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.5); }
+  }
+
+  @keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+  }
+
+  @keyframes moveLeftRight {
+    0%   { transform: translateX(0); }
+    50%  { transform: translateX(100px); }
+    100% { transform: translateX(0); }
+  }
+
+  @keyframes moveUpDown {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(100px); }
+    100% { transform: translateY(0); }
+  }
+
+  @keyframes wave {
+    0%   { transform: translateX(0) translateY(0); }
+    25%  { transform: translateX(100px) translateY(-100px); }
+    50%  { transform: translateX(200px) translateY(0); }
+    75%  { transform: translateX(100px) translateY(100px); }
+    100% { transform: translateX(0) translateY(0); }
+  }
+
+  @keyframes neonFlicker {
+    0%, 100% {
+      text-shadow:
+        0 0 10px #fff,
+        0 0 20px #ff00ff,
+        0 0 30px #ff00ff,
+        0 0 40px #ff00ff;
+      filter: blur(0px);
+    }
+    50% {
+      text-shadow:
+        0 0 5px #fff,
+        0 0 15px #00ffff,
+        0 0 25px #00ffff;
+      filter: blur(1px);
+    }
+  }
+
+  @keyframes rainbowFlash {
+    0% { background-color: red; }
+    16% { background-color: orange; }
+    33% { background-color: yellow; }
+    50% { background-color: green; }
+    66% { background-color: blue; }
+    83% { background-color: indigo; }
+    100% { background-color: violet; }
+  }
+
+  .neon-text {
+    animation: neonFlicker 1s infinite;
+    color: #fff;
+  }
+</style>
+
+<script>
+function createNyanCat(container, count, size = 256) {
+  const animations = ['spin', 'scaleBounce', 'fadeInOut', 'moveLeftRight', 'moveUpDown', 'wave'];
+
+  for (let i = 0; i < count; i++) {
+    const img = document.createElement('img');
+    img.src = "/static/images/nyan-cat.gif";
+    img.style.width = size + 'px';
+    img.style.height = size + 'px';
+    img.style.position = 'absolute';
+    img.style.top = Math.random() * 80 + '%';
+    img.style.left = Math.random() * 80 + '%';
+    img.style.pointerEvents = 'none';
+    img.style.userSelect = 'none';
+
+    const anim = animations[Math.floor(Math.random() * animations.length)];
+    const delay = (Math.random() * 2).toFixed(2);
+    img.style.animation = `${anim} 4s ease-in-out ${delay}s infinite alternate`;
+
+    container.appendChild(img);
+  }
+}
+
+function clearNyanCats() {
+  const bg = document.getElementById('background-nyans');
+  if (bg) bg.remove();
+  const popup = document.getElementById('popup-nyans');
+  if (popup) popup.remove();
+}
+
+// removePopupAndNyans 함수 삭제했습니다.
+
+function showAlert2() {
+  const form = document.querySelector('form');
+  const ids = form.ids.value.trim();
+  const password = form.re_password.value.trim();
+  const username = form.username.value.trim();
+  const email = form.email.value.trim();
+  const phone = form.phone.value.trim();
+
+  clearNyanCats(); // 기존 냥캣 제거 (배경 냥캣만 제거)
+
+  // 배경 냥캣 추가
+  const bgContainer = document.createElement('div');
+  bgContainer.id = 'background-nyans';
+  bgContainer.style.cssText = `
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: 9998;
+    overflow: hidden;
+  `;
+  document.body.appendChild(bgContainer);
+  createNyanCat(bgContainer, 20, 256);
+
+const popupOptions = {
+  width: 600,
+  padding: "3em",
+  background: "#000",
+  customClass: {
+    popup: '' // 더 이상 클래스 넣지 않음
+  },
+  didOpen: () => {
+    const popup = Swal.getPopup();
+
+    const container = document.createElement('div');
+    container.style.cssText = `
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    `;
+    container.id = 'popup-nyans';
+    popup.appendChild(container);
+    createNyanCat(container, 20, 70);
+  },
+  willClose: () => {
+    clearNyanCats();
+  },
+  confirmButtonText: "확인"
+};
+  if (!ids || !password || !username || !email || !phone) {
+    Swal.fire({
+      ...popupOptions,
+      title: `<span class="neon-text">🌈ヽ(*。>Д<)o゜가(ノω<。)ノ))☆.。입（；´д｀）ゞ실(╬▔皿▔)╯패( ﹁ ﹁ ) ~→🌈</span>`,
+    });
+    return;
+  } else {
+    Swal.fire({
+      ...popupOptions,
+      title: `<span class="neon-text">🌈(⊙_(⊙_⊙)_⊙)가(　o=^•ェ•)o　입┏━┓o(*￣▽￣*)ブ완━((*′д｀)爻(′д｀*))━!!!!료🌈</span>`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setTimeout(() => {
+          form.submit();
+        }, 100);
+      }
+    });
+  }
+}
+</script>
+
+
+</body>
+</html>

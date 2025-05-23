@@ -1,0 +1,36 @@
+1. 아나콘다 프롬프트
+2. 프로젝트 생성
+3. 프로젝트 경로로 이동
+4. 가상환경 활성화
+5. jupyter 설치 : conda install -c conda-forge jupyter : 주피터를 위한 전체 환경을 같이 설치.
+ - 모델 설계된 파일의 구조를 확인
+    conda install pydot
+ - 텐서 플로우 설치(인공지능 설계, 구현)
+    pip install tensorflow
+    pip install matplotlib
+    conda install graphviz
+ - 주피터 커널 등록
+    python -m ipykernel install --user --name p38_cnn --display-name "p38_cnn"
+
+(Hard coding할수도있고, keras 쓸수도 있지만, 쓰지않고 손으로 하는 코딩은 난이도가 상당히 높다.)
+
+(이미지가 질문이고, 라벨이 답이다.)
+
+{((60000, 28, 28), (60000,), (10000, 28, 28), (10000,)) 여기서 실제로 인공지능에 학습시키기위해, 색상에 대한 정보를 추가해야한다.}
+
+shape 구조를 바꾸는 방법은 reshape 라 한다. 
+
+6. 인공지능이 학습할 수 있는 형태로 전처리 작업. (성능에 가장 크게 영향을 주는 부분.)
+0-1 : 실수형태로 변경.
+
+7. summary 모델이 잘 설계되었는지 확인.
+
+(None은 데이터의 개수 제한없이.)
+(Max pooling은 절반으로 줄어든다.)
+
+(Class는 10개다.)
+
+(너무 학습시키면 Over-fitting, so as not to be that, 뭐 무슨 스탑 옵션걸면된다.)
+
+
+8. fit 학습데이터, 학습 정답.

@@ -1,0 +1,12 @@
+폴더명 : 008_ai_access
+프로젝트명 : aiaccess
+	앱리스트
+	landing (랜딩페이지)
+	member (회원관리)
+	camera (카메라제어)
+	ai (인공지능)
+	: 얼굴인식(Face Recognition)
+	: 얼굴추출(Dlib)
+	: 데이터VectorDB(FAISS)
+	api(API RESTful API)
+가상환경 : p310_djangoai

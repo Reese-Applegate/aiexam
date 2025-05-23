@@ -1,0 +1,21 @@
+PyQt5 = 윈도우 프로그램을 만들 때 사용하는 라이브러리
+
+1. 설치
+	(1) 디렉토리 추가
+	c:\ai_exam\001_python
+	c:\ai_exam\002_PyQt5
+	(2) 가상환경 설정
+	새파일 test.py
+	(3) PyQt5 설치
+	(win) pip install -U pyqt5
+	(mac) brew install pyqt5 
+
+다양한 툴이 많으니, 이미 다 만들어져있는것들을 잘 가져다 쓰는것이 중요하다.
+맨땅에 삽질하지말자.
+
+3. python 실행프로그램 만들기(exe)
+	(1) 실행파일 만드는 라이브러리 설치
+		pip install pyinstaller
+	(2) 실행파일
+		pyinstaller -w -F main_test.py
+  - 가상환경에 있던 파일들을 패키징화 한다.

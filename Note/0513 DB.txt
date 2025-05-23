@@ -1,0 +1,149 @@
+<Django, Database>
+LANG : Python
+WEB : Django
+WEB Service : HTML, TailwindCSS(화면설계)
+AI : Face Recognition, Dlib, CNN, FAISS, OpenCV
+DB : MariaDB
+
+제목 : 인공지능 출입관리 프로젝트
+
+---이어서. 
+
+10. 최대값과 최소값을 구하기(max, min)
+마트에서 가장 비싼 제품을 찾기
+select max(sale_pays) from 
+
+select *
+from martlist
+where sale_pays = (select max(sale_pays) from martlist);
+
+** 참고사항
+SQL은 복잡한것을 사용하지 않는다
+
+
+<실제 서버>
+  데이터베이스 서버 : 220.80.16.79
+  데이터베이스명 : martdb
+  아이디 : mart
+  암호 : mart^^1234
+
+<개인 DB>
+  데이터베이스 서버 : 220.80.16.79
+  데이터베이스 명 : applegate046_db
+  아이디 : applegate046
+  암호 : 01041873529
+
+
+-------
+드장고에서 DB 연결하는 방법 
+
+*PyMysql
+pip install PyMySQL 
+
+[Project]>settings.py
+
+...
+DATABASES = {
+    "default": {
+        # "ENGINE": "django.db.backends.sqlite3",
+        # "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "applegate046_db",
+        "USER": "applegate046",
+        "PASSWORD": "01041873529",
+        "HOST": "220.80.16.79",
+        "PORT": "3306",
+        "OPTIONS": {
+            "charset": "utf8mb4"
+        }, # Emoji 지원
+    }
+}
+...
+
+2. DB에 드장고가 사용할 Table 초기생성(최초)
+python manage.py migrate
+Then, 장고가 사용하는 DB를 최초에 만들어.
+테이블을 새로 만들면, which is [make migrations]
+각 Apps에 migrate 폴더가 생긴다. 
+
+3. 관리자 생성하기
+python manage.py createsuperuser
+
+http://localhost:7000/admin # 드장고에서 기본적으로 제공하는 관리자 페이지.
+
+models.py
+
+...
+class User(models.Model):
+    ids        = models.CharField(max_length=100, null=False, verbose_name="아이디")
+    usernames  = models.CharField(max_length=100, null=False, verbose_name="이름")
+    password   = models.CharField(max_length=100, null=False, verbose_name="비밀번호")
+    email      = models.CharField(max_length=100, null=False, verbose_name="이메일")
+    phone      = models.CharField(max_length=100, null=False, verbose_name="전화번호")
+    cnts       = models.IntegerField(default=0, verbose_name="방문수")
+    first_dates= models.CharField(max_length=100, null=False, verbose_name="가입일")
+    first_ips  = models.CharField(max_length=100, null=False, verbose_name="가입IP")
+
+
+    def __str__(self):
+        return self.username
+...
+SQL문을 대신한다.
+
+python manage.py makemigrations
+=> 나.. 테이블을 하나 생성하거나 수정할게 생겼어..
+
+* 이상(anormaly)이 없으면
+python manage.py migrate
+
+3. 관리자 페이지에서 생성한 DB 연결
+   DB를 API에서 생성
+   api/admin.py
+
+   => SQL문으로 데이터를 등록
+
+등록
+http://localhost:7000/member/test_1234/add/
+http://localhost:7000/member/add/?ids=test_1234 - 보안에 취약한 구식 방식.
+
+5. DELETE문
+DELETE FROM api_members
+WHERE ids = 'testid'; 
+하나밖에없다.
+
+jQuery : JavaScript에 대한 정보를 모두 모아놓은 프레임워크
+* bootstrap : 부트스트랩
+google -> sweetalert2
+
+
+6. UPDATE 문
+UPDATE api_members
+SET Username = 'newtest', password = '4857'
+WHERE ids = 'test_id';
+
+
+UPDATE 테이블명
+SET 수정할 값
+WHERE 조건문;
+
+---
+
+7.  입력화면 만들기
+
+https://flowbite.com/blocks/marketing/register/
+많이보던 그 화면
+
+
+8. 서버에 데이터를 넘기기 위해서
+<form>
+안의 모든 변수 값을
+</form>
+
+...
+<input type="ids" name="ids" id="ids" 
+...
+
+name : 파이썬에서 변수
+	name변수로 넘어옴
+	일치하는지여부만 확인할때 사용한다.
+id : 파이썬x 자바스크립트에서 제어할때.

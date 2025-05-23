@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>672</width>
+    <height>291</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>주식 망해라</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="btnClose">
+    <property name="geometry">
+     <rect>
+      <x>535</x>
+      <y>205</y>
+      <width>113</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>프로그램 종료</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tblFinance">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>653</width>
+      <height>199</height>
+     </rect>
+    </property>
+    <row>
+     <property name="text">
+      <string>SOXL</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>TQQQ</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>SPXL</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>SQQQ</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>UVXY</string>
+     </property>
+    </row>
+    <column>
+     <property name="text">
+      <string>종목명</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>현재가</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>5월 평균</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>상승/하락</string>
+     </property>
+    </column>
+    <item row="0" column="0">
+     <property name="text">
+      <string/>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="lb_date">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>220</y>
+      <width>206</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>갱신일자 : 2025년 05월 07일 00:00:00</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>672</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

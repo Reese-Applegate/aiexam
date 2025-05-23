@@ -1,0 +1,50 @@
+
+1. GAN, github 사용하는 방법
+ - - BeautyGAN 하도록 하겠습니다.
+ Dlib GAN,
+
+2. GAN
+GAN stands for Generator(G) Adversarial(A) Netwrok(N)
+
+python 3.6
+TensorFlow1.9
+
+3. 아나콘다 설치 및 경로이동
+
+4. 라이브러리 설치
+ 공부
+ Dlib, FAISS => aiaccess 얼굴인식하는 처리 루틴
+
+python -m ipykernel install --user --name p36t19_GAN --display-name "p36t19_GAN"
+
+ - Dlib 라이브러리 설치
+   => 사람의 얼굴의 특징을 분석하는 라이브러리(많이 사용하는 라이브러리)
+   => 사람얼굴 처리 : mediapipe
+
+conda install -c conda-forge dlib
+
+(2) landmark 학습된 라이브러리가 있음.
+davisking/dlib-models/blob/master/shape_predictor_68_face_landmarks.dat.bz2, shape_predictor_5_face_landmarks.dat.bz2
+
+압축해제후
+/models/
+
+(4) 깃허브 소스 다운로드
+
+(5) 폴더 정리
+GAN : 모델 학습된 파일
+imgs : 레퍼런스 데이터
+models : dlib face 분석하는 라이브러리가 있는 파일.
+
+
+(1) dlib 에서 얼굴찾는것을 detector
+
+rectangles[[(536, 108) (598, 170)], [(784, 113) (859, 188)], [(308, 170) (370, 232)], [(88, 138) (162, 213)]] 한명밖에없으면 한명이 나오고 ㅇ두명밖에없으면 두명이 나오고 뭐 
+
+x left y top w width , h height
+
+
+7. dlib에서 랜드마크 포인트 5개 인식
+5개의 점으로 사람의 얼굴을 인식
+
+

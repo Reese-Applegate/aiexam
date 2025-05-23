@@ -1,0 +1,119 @@
+python -m ipykernel install --user --name p38_CNN --display-name "p38_CNN"
+
+1. YOLO의 장점
+	cnn : 속도, 분류 작업을 할 때 사용
+	YOLO : 객체 검출 작업을 할 때 사용, 실시간성이 우수
+2. YOLO stands for You Only Look Once
+객체 감지 및 이미지 분할에 사용되는 인공지능 모델
+실시간으로 물체를 감지하는데 빠르게 사용
+이미지를 한 번만 보고 객체를 감지하는 방식
+
+3. YOLO 엔진 설치
+
+(1) 가상환경 p38_CNN 사용.
+(2) 프로젝트 파일 생성
+
+yolo - Custom Data(실제 적용할 데이터) -> 학습 -> 동작
+-> API, Django 서비스로 구축
+
+(3) YOLO 개발환경
+python 3.8 이상
+
+(4) github 설치하는 법
+requirements.txt
+라이브러리를 하나씩 설치하기 어려우니, 개발자가 한꺼번에 설치하도록 구성된 파일
+
+(5) vscode
+c:\ai_exam\011_yolo_fire <- 적용
+
+Usage: pip install -r requirements.txt
+
+--
+
+4. YOLO 세부 구조
+/data/coco.yamal <- 학습된 class 정보가 저장된 파일
+yolov5s.pt		<- 객체 인식할 수 있는 파일
+80개의 객체를 인식할 수 있음.
+
+5. 특정 객체만 탐지하고 싶을 때
+인간
+python detect.py --weights yolov5s.pt --source "https://m.media-amazon.com/images/M/MV5BNjk4YjU1ZGQtZWJmNS00MzQyLTk0ZGMtYjVlMGNiMjU4Zjc4XkEyXkFqcGc@._V1_.jpg" --classes 0
+개새끼
+python detect.py --weights yolov5s.pt --source "https://www.shutterstock.com/image-photo/cat-dog-rodent-group-260nw-244671079.jpg" --classes 16
+
+python detect.py --weights yolov5s.pt --source messy.mp4
+영상이 스트리밍이면 뭐 실시간가능.
+
+
+밤 20% 70% 80%
+model.conf<- confidence 신뢰도 : 0.2
+
+6. 라벨링 하는 방법
+(1) 설치
+pip install labelimg
+cd labelimg
+프로그램 실행
+labelimg
+
+=>
+3.jpg : 문제
+3.json : 답
+=> dataset 학습할때 쓴다.
+
+6. CustomModel 학습 ->실무에 적용
+
+7. dataset 구조
+train : 학습 데이터
+val : 학습진행에서 사용하는 평가
+test : 최종결과 테스ㅡㅌ
+
+nc : Name Classes
+names : 클래스 영문명칭
+
+8. 학습을 진행하는 방법
+코랩
+9. 코랩 사용하는 법
+왼쪽 메뉴 폴더 누르면 시스템이 표기 됨
+
+!pwd : 현재 위치 확인
+%cd 특정 디렉토리로 이동
+
+# gpu 확인하는 방법
+!nvidia-smi
+
+10. 학습하는 방법
+!python
+train.py
+--img 415 # 학습시킬 이미지의 크기(사이즈)
+--batch 16 # 한번에 GPU메모리에 불러올 용량
+--epoches 300 # 300번 학습
+--data /content/data/data.yaml # 학습할 데이터 정보가 포함되어있는 yaml 파일
+--cfg ./models/yolov5s.yaml # 학습할 모델을 지정 yolov5 small 모델로 학습
+--weights yolov5s.pt # 학습결과를 저장할 파일 경로
+--name fire_yolov5s_results # 이름 지정
+
+!zip -r /content/fire_result.zip /content/train/yolov5/runs/train/fire_yolov5s_results/
+
+11. 학습 결과파일을 보는 방법
+weights/ # pre-trained model
+best.pt # 학습과정 중 가장 성능이 좋은 상태를 저장한 학습파일
+last.pt # 맨 마지막 학습된 파일
+
+
+detect.py
+# GPU가 없을 때 실행
+import pathlib
+temp = pathlib.PosixPath
+pathlib.PosixPath = pathlib.WindowsPath
+
+실행
+python detect.py --weights ./weights/best.pt --source ./source/Muan.mp4
+
+-------------
+
+aiaccess 에서 
+회원데이터 -> 사진(5개)-> 전처리 -> 벡터DB -> 일치여부 -> 승인
+								    |		  비승인
+								외부카메라
+
+

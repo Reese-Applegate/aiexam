@@ -1,0 +1,63 @@
+<크롤링, 워드클라우드>
+
+크롤링 : 부족한 데이터를 채우기 위함.
+
+1. 라이브러리 확인
+ (1) 크롤링 하려면 어떤것이 필요한가 ? 
+	* BeautifulSoup4 -> HTML, 웹서비스 분석.
+	* WordCloud -> 수집된 데이터의 시각화
+	* Selenium
+
+크라울링 데이터를 엑셀파일
+
+https://search.naver.com/search.naver?
+where=nexearch
+&
+sm=top_hty
+&
+fbm=0
+&
+ie=utf8
+&
+query=%EC%9D%B5%EC%84%A0%EB%8F%99+%EB%A7%9B%EC%A7%91
+&
+ackey=g0zo7xr9
+
+물음표 이전이 원래 주소.
+물음표는 구분자.
+query : 변수
+%EC%9D%B5%EC%84%A0%EB%8F%99+%EB%A7%9B%EC%A7%91 : 값, 내 검색어
+변수추가는 &
+
+
+HTML = TAG 언어
+HTML = Hyper Text Markup Language
+
+
+total = soup.select('.basic1')
+[
+	["https://kin.naver", "인공지능..."]
+	["https://kin.nvaer...","인간이...."]
+]
+
+1. 인공지능 => 데이터를 크롤링한 경우 -> 파일로 경우
+2. 저장한 파일-> 불러와서 -> 데이터분석(EDA) -> 시각화
+
+
+search
+
+Paging
+
+Delay[지연_]:=
+import itme
+import random
+
+delay_time = randint(1,7)
+
+네이버 블로그는 난이도가 높다.
+크롤링 하면 안된대. 불법
+인스타도 안돼. 매일 뭘 바꿔. 양아치임.
+
+가져온 데이터를 
+
+pip install jupyter 인공지능 처리할때 가장 많이 쓰는 프로그램 중 하나
