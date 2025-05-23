@@ -1,0 +1,32 @@
+🔧 1. Git 자격 증명 캐시 삭제 (Windows)
+방법 ① Git 자격 증명 관리자에서 삭제
+
+    Windows 검색창에 "자격 증명 관리자(Credential Manager)" 입력 → 실행
+
+    "Windows 자격 증명" 탭 클릭
+
+    git:https://github.com 또는 github.com 관련 항목 찾아 삭제
+
+    다음 push 시 새 로그인 정보 입력 가능
+
+🔐 2. GitHub 자격 증명 재설정 (PAT 로그인)
+
+GitHub는 현재 비밀번호 대신 Personal Access Token (PAT) 을 사용해야 합니다:
+
+    GitHub 접속 → https://github.com/settings/tokens
+
+    "Generate new token (classic)" 클릭
+
+    필요한 권한 선택 (예: repo) → 토큰 복사
+
+
+🚀 3. 다시 push 시도 → 새 사용자로 로그인
+
+git push -u origin main
+
+Git이 사용자명을 묻지 않으면 명시적으로 설정:
+
+git config --global user.name "your_github_username"
+git config --global user.email "your_email@example.com"
+
+
