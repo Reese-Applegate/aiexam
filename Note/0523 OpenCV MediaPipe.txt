@@ -80,3 +80,10 @@ conda install -c conda-forge dlib
 mediapipe : 얼굴, 손, 모션 등 다양한 분야에서 사용할 수 있는 구글이 공개한 인공지능 라이브러리(Pre-trained)
 
 pip install mediapipe
+
+10. cvzone_hand.py
+
+11. cvzone : pose
+cvzone_pose.py
+
+12. cvzone_mash.py
